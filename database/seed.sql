@@ -4,15 +4,14 @@ CREATE DATABASE QuestionsAndAnswers;
 
 -- Create tables
 CREATE TABLE questions(
-   id   INT   NOT NULL, 
+   id   SERIAL PRIMARY KEY, 
    product_id INT  NOT NULL,
-   body TEXT,
-   date_written DATE,
+   body TEXT NOT NULL,
+   date_written DATE NOT NULL DEFAULT CURRENT_DATE,
    asker_name TEXT NOT NULL,
    asker_email TEXT, 
-   reported INT, 
-   helpful INT,
-   PRIMARY KEY (id)
+   reported INT DEFAULT 0, 
+   helpful INT DEFAULT 0
 );
 
 CREATE TABLE answers(
