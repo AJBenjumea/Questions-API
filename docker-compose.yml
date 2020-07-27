@@ -16,7 +16,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./server/models/questions.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/init.sql
       - ./pg-data:/var/lib/postgresql
   
   # pgadmin:
