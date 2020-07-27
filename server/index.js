@@ -1,11 +1,24 @@
-const express = require('express')
+const express = require('express');
+const bodyParser = require('body-parser');
+const {
+  reportAnswer, 
+  helpfulAnswer,
+  helpfulQuestion,
+  reportQuestion,
+  addAnswer
+} = require('./controllers');
+
+
 const app = express()
-const port = 3000
+app.use(bodyParser.json())
 
-// const { Client } = require('pg')
-// const client = new Client()
-// client.connect()
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.put('/qa/answer/:answer_id/report', reportAnswer);
+app.put('/qa/answer/:answer_id/helpful', helpfulAnswer);
+app.put('/qa/question/:answer_id/helpful', helpfulQuestion);
+app.put('/qa/question/:answer_id/report', reportQuestion);
+app.post('/qa/:question_id/answers', addAnswer); 
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+
+const port = 3000;
+app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
