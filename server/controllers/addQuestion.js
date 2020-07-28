@@ -5,7 +5,7 @@ module.exports = async function addQuestion(req, res) {
     let data = {
       body: req.body.body, 
       asker_name: req.body.name,
-      asker_email: req.body.email,
+      asker_email: req.body.email, 
     };
 
     let update = await addNewQuestion(req.params.product_id, data)

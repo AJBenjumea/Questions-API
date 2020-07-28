@@ -61,3 +61,8 @@ $$ LANGUAGE plpgsql;
 SELECT setval('answers_id_seq', (SELECT MAX(id) from "answers"));
 SELECT setval('photos_id_seq', (SELECT MAX(id) from "photos"));
 SELECT setval('questions_id_seq', (SELECT MAX(id) from "questions"));
+
+-- Create index for lookup values
+CREATE INDEX idx_product_id ON questions(product_id);
+CREATE INDEX idx_question_id ON answers(question_id);
+CREATE INDEX idx_answer_id ON photos(answer_id);

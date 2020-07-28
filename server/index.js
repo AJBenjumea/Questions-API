@@ -6,7 +6,8 @@ const {
   helpfulQuestion,
   reportQuestion,
   addAnswer,
-  addQuestion
+  addQuestion,
+  listAnswers
 } = require('./controllers');
 
 
@@ -20,6 +21,7 @@ app.put('/qa/question/:answer_id/helpful', helpfulQuestion);
 app.put('/qa/question/:answer_id/report', reportQuestion);
 app.post('/qa/:question_id/answers', addAnswer); 
 app.post('/qa/:product_id', addQuestion); 
+app.get('/qa/:question_id/answers', listAnswers)
 
 
 const port = 3000;
