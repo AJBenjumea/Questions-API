@@ -1,12 +1,15 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+
 const config = {
-  user: process.env.POSTGRES_USER,
-  password: process.env.POSTGRES_PASSWORD,
-  host: process.env.PG_HOST,
+  user: process.env.APG_USER,
+  password: process.env.APG_PASSWORD,
+  host: process.env.APG_HOST,
   database: process.env.PG_DB,
-  max: 20
+  port: 5432,
+  ssl: true,
+  max: 40
 }
 
 const pool = new Pool(config)
@@ -14,7 +17,10 @@ const pool = new Pool(config)
 module.exports = {
   query: function(text, values, cb) {
      pool.connect(function(err, client, done) {
-       client.query(text, values, function(err, result) {
+      if (err) {
+        return console.error('Error acquiring client', err.stack)
+      }
+      client.query(text, values, function(err, result) {
         done();
         cb(err, result);
        })

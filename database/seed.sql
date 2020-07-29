@@ -53,16 +53,18 @@ $$ LANGUAGE plpgsql;
 
 
 -- Copy CSV data
-\copy questions FROM '/var/lib/postgresql/questions_clean.csv' DELIMITER ',' CSV HEADER;
-\copy answers FROM '/var/lib/postgresql/answers_clean.csv' DELIMITER ',' CSV HEADER;
-\copy photos FROM '/var/lib/postgresql/photos_clean.csv' DELIMITER ',' CSV HEADER;
+-- \copy questions FROM '/var/lib/postgresql/questions_clean.csv' DELIMITER ',' CSV HEADER;
+-- \copy answers FROM '/var/lib/postgresql/answers_clean.csv' DELIMITER ',' CSV HEADER;
+-- \copy photos FROM '/var/lib/postgresql/photos_clean.csv' DELIMITER ',' CSV HEADER;
 
 -- Update primary key sequence 
-SELECT setval('answers_id_seq', (SELECT MAX(id) from "answers"));
-SELECT setval('photos_id_seq', (SELECT MAX(id) from "photos"));
-SELECT setval('questions_id_seq', (SELECT MAX(id) from "questions"));
+-- SELECT setval('answers_id_seq', (SELECT MAX(id) from "answers"));
+-- SELECT setval('photos_id_seq', (SELECT MAX(id) from "photos"));
+-- SELECT setval('questions_id_seq', (SELECT MAX(id) from "questions"));
 
 -- Create index for lookup values
 CREATE INDEX idx_product_id ON questions(product_id);
 CREATE INDEX idx_question_id ON answers(question_id);
 CREATE INDEX idx_answer_id ON photos(answer_id);
+CREATE INDEX idx_answers_reported ON answers (reported)
+WHERE reported = 0;
