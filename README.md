@@ -4,13 +4,13 @@ The goal of this project was to rebuild a Questions & Answers service as part of
 ---
 
 ## Table of Contents
-1. [Installing Dependencies](#Installing-Dependencies)
+1. [Setup](#Setup)
 2. [Routes](#Routes)
 3. [Load Testing](#Load-Testing)
 
 ---
 
-## Installing-Dependencies
+## Setup
 
 
 >*Install dependencies*
