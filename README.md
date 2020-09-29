@@ -28,13 +28,17 @@ Open `http://localhost:3000`
 
 ## Routes
 
-| Request Type | Endpoint                    | Returns                                                                    | Status |
+| Request Type | Endpoint                    | Action                                                                    | Status |
 |--------------|-----------------------------|----------------------------------------------------------------------------|:--------:|
-| GET          | /qa/:product_id             | Retrieves a list of questions for a particular product                     | 200    |
-| GET          | /qa/:question_id/answers    | Returns answers for a given question                                       | 200    |
-| POST         | /qa/:product_id             | Adds a question for the given product                                      | 201    |
-| PUT          | /qa/:question_id/answers    | Adds an answer for the given question                                      | 204    |
-| Put          | /qa/question/:question_id/helpful  | Nothing is returned - updates a review to show it was reported             | 204    |
+| GET          | /qa/:product_id                    | Retrieves a list of questions for a particular product                     | 200    |
+| GET          | /qa/:question_id/answers           | Returns answers for a given question                                       | 200    |
+| POST         | /qa/:product_id                    | Adds a question for the given product                                      | 201    |
+| POST         | /qa/:question_id/answers           | Adds an answer for the given question                                      | 201    |
+| PUT          | /qa/question/:question_id/helpful  | Updates a question to show it was found helpful                            | 204    |
+| PUT          | /qa/question/:question_id/report   | Updates a question to show it was reported                                 | 204    |
+| PUT          | /qa/answer/:question_id/helpful    | Updates an answer to show it was found helpful                             | 204    |
+| PUT          | /qa/answer/:question_id/report     | Updates an answer to show it was reported                                  | 204    |
+
 
 ---
 
