@@ -5,9 +5,8 @@ The goal of this project was to build a scalable RESTful API service for a retai
 
 ## Table of Contents
 1. [Installing Dependencies](#Installing-Dependencies)
-2. [Tech Stack](#Tech-Stack)
-3. [Routes](#Routes)
-4. [Load Testing](#Load-Testing)
+2. [Routes](#Routes)
+3. [Load Testing](#Load-Testing)
 
 ---
 
@@ -31,65 +30,17 @@ Open `http://localhost:3000`
 
 | Request Type | Endpoint                    | Returns                                                                    | Status |
 |--------------|-----------------------------|----------------------------------------------------------------------------|:--------:|
-| GET          | /reviews/:product_id/list   | A list of reviews for a particular product, excluding any reported reviews | 200    |
-| GET          | /reviews/:product_id/meta   | Review metadata for a given product                                        | 200    |
-| POST         | /reviews/:product_id        | Nothing is returned - adds a review for the given product                  | 201    |
-| PUT          | /reviews/helpful/:review_id | Nothing is returned - updates a review to show it was found helpful        | 204    |
-| Put          | /reviews/report/:review_id  | Nothing is returned - updates a review to show it was reported             | 204    |
+| GET          | /qa/:product_id             | Retrieves a list of questions for a particular product                     | 200    |
+| GET          | /qa/:question_id/answers    | Returns answers for a given question                                       | 200    |
+| POST         | /qa/:product_id             | Adds a question for the given product                                      | 201    |
+| PUT          | /qa/:question_id/answers    | Adds an answer for the given question                                      | 204    |
+| Put          | /qa/question/:question_id/helpful  | Nothing is returned - updates a review to show it was reported             | 204    |
 
 ---
 
 ## Load-Testing
 
-### Test Group 1 - Requests on random IDs
-#### *Scenario*
->Surge in traffic on the website, no specific points of interest
-
-#### *Test Type*
->2000 client requests made each second for 30 seconds
-
-#### *Queries*
->GET -- /reviews/%{*:1-100000}/list
-
->GET -- /reviews/%{*:1-100000}/meta
-
-#### *Results*
-| Optimization Type      | Avg. Response Time  | Successful Response Counts |
-|------------------------|--------------------:|---------------------------:|
-| Indexing               |             8587 ms |              11920 / 60000 |
-| Indexing, Redis        |     5419 ms (36.9%) |               18512 / 60000 |
-| Indexing, Redis, Pools |     3287 ms (61.8%) |               29441 / 60000 |
-
-#### *Detailed Loader.io results:*
-
-<details>
-<summary>Indexing</summary>
-<br>
-
-![](readme-assets/SDC-Random-1.png)
-
-</details>
-
-<details>
-<summary>Indexing, Redis Caching</summary>
-<br>
-
-![](readme-assets/SDC-Random-2.png)
-
-</details>
-
-<details>
-<summary>Indexing, Redis Caching, Connection Pooling</summary>
-
-<br>
-
-![](readme-assets/SDC-Random-3.png)
-
-</details>
-
----
-
-### Test Group 2 - Requests on repeating IDs
+### Requests to specific endpoints
 #### *Scenario*
 >Surge in traffic to specific points of interest (news event, influencer, etc.)
 
