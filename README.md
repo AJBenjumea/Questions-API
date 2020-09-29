@@ -12,7 +12,6 @@ The goal of this project was to rebuild a Questions & Answers service as part of
 
 ## Installing-Dependencies
 
-### Navigate to the root directory and run the following in your terminal:
 
 >*Install dependencies*
 ```
